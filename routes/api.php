@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Auth\ApiAuthController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -19,4 +20,17 @@ use Illuminate\Support\Facades\Route;
 //});
 Route::group(['middleware' => ['cors', 'json.response']], function () {
     // ...
+
+    Route::group(['middleware' => ['cors', 'json.response']], function () {
+
+        // ...
+
+        // public routes
+        Route::post('/login', [ApiAuthController::class,'login'])->name('login.api');
+        Route::post('/register',[ApiAuthController::class,'register'])->name('register.api');
+        Route::post('/logout', [ApiAuthController::class,'logout'])->name('logout.api');
+
+        // ...
+
+    });
 });
